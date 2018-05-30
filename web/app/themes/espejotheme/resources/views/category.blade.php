@@ -9,14 +9,15 @@
   @endif
 
   <div class="todo">
-    @include('partials.sidebar')
-
+    {!! $tags !!}
     <div class="main-lista">
-      @while (have_posts()) @php(the_post())
-        @include('partials.content-'.get_post_type())
-      @endwhile
-      {!! get_the_posts_navigation() !!}
-
+      <div class="grid">
+        <div class="grid-sizer"></div>
+          @while (have_posts()) @php(the_post())
+            @include('partials.content-'.get_post_type())
+          @endwhile
+          {!! get_the_posts_navigation() !!}
+      </div>
     </div>
 
   </div>

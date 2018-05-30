@@ -1,0 +1,361 @@
+$h: 100vh;
+$header: 122px; //esto es el header + el margen superior + el margen inferior
+$h_single: 82px;
+$h_abajo: 42px;
+$mrb: 100px; //margin para re-utilizar
+
+//home page, división del post destacado
+article.full-page {
+  height: calc(#{$h} - #{$header});
+  // flex-direction: column;
+  // justify-content: center;
+
+  @include make-row;
+
+  // @extend .d-flex ;
+
+  .izq {
+    @extend .col ;
+
+    border-right: 2px solid;
+
+    @extend .d-flex ;
+    @extend .flex-column ;
+    @extend .justify-content-center ;
+
+    img {
+      @extend .img-fluid ;
+      @extend .mx-auto ;
+      @extend .text-center ;
+
+      max-width: 400px;
+      max-height: 300px;
+      margin-top: -40px;
+
+      @include media-breakpoint-up(xxl) {
+        max-width: 614px;
+        max-height: 380px;
+      }
+    }
+
+    .entry-title {
+      position: absolute;
+      font-size: 2.75rem;
+      bottom: 0;
+      // margen para alinear el texto con la barra de navegacion
+      margin-left: 25px;
+      margin-bottom: 0;
+    }
+  }
+
+  .der {
+    @extend .col ;
+    @extend .d-flex ;
+    @extend .flex-column ;
+    @extend .justify-content-center ;
+    //@extend .align-items-end ;
+
+    .entry-summary {
+      position: absolute;
+      bottom: 0;
+      // margen para alinear el texto con la barra de navegacion
+      margin-left: 25px;
+      //padding: 0 25px 20px;
+      font-size: 1.25rem;
+    }
+
+    img {
+      @extend .img-fluid ;
+      @extend .mx-auto ;
+      @extend .text-center ;
+
+      max-width: 400px;
+      max-height: 300px;
+      margin-top: -40px;
+
+      @include media-breakpoint-up(xxl) {
+        max-width: 614px;
+        max-height: 380px;
+      }
+    }
+  }
+}
+//listado de los Tags en el home y las categorias
+.post_tags {
+  @include make-col-ready();
+
+  font-size: 1.875rem;
+  font-weight: light;
+}
+
+.main-lista {
+  @include make-col-ready();
+
+  margin-top: 100px;
+}
+//para el Masonry
+.grid {
+  article,
+  .grid-sizer {
+    @include make-col-ready();
+
+    min-height: 1px;
+    font-size: 3.125rem;
+
+    h2 {
+      font-size: 3.125rem;
+    }
+
+    @include media-breakpoint-up(sm) {
+      @include make-col(4);
+
+      margin-bottom: 100px;
+    }
+  }
+
+  .grid-item {
+    @include media-breakpoint-up(sm) {
+      @include make-col(4);
+
+      margin-bottom: 100px;
+    }
+  }
+}
+
+.contenedor {
+  width: 100%;
+}
+//SINGLE View
+article.single {
+  @include make-row;
+  //height: calc(#{$h} - #{$header});
+}
+
+.izq-single-up {
+  @extend .col-12 ;
+  @extend .d-flex ;
+  //@extend .flex-column ;
+  @extend .justify-content-center ;
+
+  height: calc(#{$h} - #{$h_single});
+
+  .entry-title-single {
+    @extend .text-center ;
+    @extend .align-self-center ;
+
+    margin-top: -82px;
+  }
+
+  .nav-posts {
+    display: inline;
+    position: absolute;
+    right: 25px;
+  }
+
+  .pie {
+    position: absolute;
+    font-size: 1.25rem;
+    bottom: 40px;
+    left: 40px;
+    // margen para alinear el texto con la barra de navegacion
+    //margin-left: 25px;
+    margin-bottom: 0;
+  }
+
+  .tags-single {
+    position: absolute;
+    bottom: 40px;
+    width: 50%;
+    right: 20px;
+    font-size: 1.25rem;
+  }
+}
+
+.izq-single-abajo {
+  @extend .col-12 ;
+  @extend .d-flex ;
+
+  //padding-right: 40px;
+  padding-right: 0;
+  padding-left: 0;
+  //padding-top: 45px;
+
+  .galeria,
+  .up-linea {
+    padding: 100px 15px;
+    width: 100%;
+    border-top: 2px solid;
+    margin-right: 35px;
+    margin-left: 40px;
+    height: 100vh;
+
+    // @extend .align-self-start ;
+
+    .row {
+      margin-top: 100px;
+    }
+
+    h3 {
+      margin-left: -15px;
+    }
+  }
+}
+
+.der-single-up {
+  @extend .col-12 ;
+  @extend .d-flex ;
+  @extend .flex-column ;
+  //@extend .justify-content-center ;
+
+  border-left: 2px solid;
+  //height: calc(#{$h} - #{$h_single});
+
+  .info-player {
+    position: absolute;
+    bottom: 25px;
+    left: 40px;
+    right: 40px;
+  }
+
+  figure {
+    @extend .img-fluid ;
+  }
+}
+
+//texto largo y el player abajo a la izquierda
+.texto-largo {
+  min-height: calc(#{$h} - #{$h_single});
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+//clase para cuando no tenemos un texto súper largo
+.curto {
+  height: calc(#{$h} - #{$h_single});
+  display: flex;
+
+  iframe {
+    @extend .mx-auto ;
+    @extend .align-self-center ;
+
+    margin-top: -82px;
+  }
+}
+
+.der-single-abajo {
+  @extend .col-12 ;
+  @extend .d-flex ;
+
+  border-left: 2px solid;
+  padding-right: 0;
+  padding-left: 14px;
+  margin-bottom: 40px;
+  height: calc(#{$h} - #{$h_abajo});
+
+  .post-relacionados {
+    font-size: 1.875em;
+    border-top: 2px solid;
+    width: 100%;
+    padding-top: 100px;
+    padding-right: 0;
+    margin-left: 20px;
+    margin-right: 40px;
+
+    h3,
+    h4 {
+      font-size: 1em;
+    }
+
+    h3 {
+      margin-bottom: 100px;
+    }
+  }
+}
+//extra clase, galería a la derecha
+.g-der {
+  @extend .col-12 ;
+
+  padding-top: 100px;
+  margin-bottom: 100px;
+  width: 100%;
+  border-top: 2px solid;
+
+  .row {/* stylelint-disable-line */
+    margin-top: 100px;
+  }
+}
+//margen para el row dentro de la galeria en la derecha abajo
+.mr {
+  margin-left: 20px;
+  margin-right: 40px;
+}
+//margen para el row en el player a la izquierda abajo
+.mrr {
+  margin-left: 20px;
+  margin-right: 50px;
+}
+
+//extra para los post relacionados con múliples contenido
+.pr-bajo {
+  @extend .mr-0 ;
+  @extend .ml-0 ;
+}
+//extra para el player cuando hay múltiples contenidos
+.player-extra {
+  margin-left: 20px !important;
+}
+
+.img-featured {
+  @extend .mx-auto ;
+  @extend .text-center ;
+
+  .cc {
+    max-width: 400px;
+    max-height: 300px;
+
+    @include media-breakpoint-up(xxl) {
+      max-width: 614px;
+      max-height: 380px;
+    }
+  }
+}
+
+.player {
+  min-width: 300px;
+  max-width: 400px;
+}
+
+//LIGTHBOX
+#ligthbox {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    cursor: pointer;
+  }
+}
+
+.lg-outer {
+  background-color: #eaeaea;
+}
+
+.lg-actions .lg-next::before {
+  content: " " !important;
+}
+
+.lg-actions .lg-prev::after {
+  content: " " !important;
+}
+//variables del lightbox
+$lg-icon-bg: transparent;
+$lg-icon-color: #000;
+$lg-toolbar-bg: transparent;
+
+//PLAYLIST
+.wp-playlist {
+  border: none;
+}
+
+.wp-playlist-tracks {
+  margin-top: 100px;
+}

@@ -54,3 +54,20 @@
   @extend .sr-only;
   @extend .sr-only-focusable;
 }
+
+.mejs-container {
+  //max-width: 100% !important;
+  // position: relative !important;
+  //margin-bottom: 25px;
+  // height: 200px;
+  background: transparent !important;
+  border: 1px solid;
+  padding: 25px;
+}
+
+// .mejs-container .mejs-controls {
+
+// }
+// .mejs-button > button {
+//   color: #000;
+// }

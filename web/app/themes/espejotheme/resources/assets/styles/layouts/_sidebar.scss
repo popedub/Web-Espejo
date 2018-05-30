@@ -1,0 +1,25 @@
+.sidebar-home {
+  //border-right: 2px solid;
+  @extend .col ;
+
+  height: 100%;
+  position: sticky;
+  top: 50%;
+  margin-bottom: 50%;
+
+  @extend .d-flex ;
+  @extend .flex-column ;
+  @extend .justify-content-center ;
+
+  .titular-fijo {
+    @extend .mx-auto ;
+    @extend .text-center ;
+
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    visibility: hidden;
+    text-transform: uppercase;
+  }
+}
+

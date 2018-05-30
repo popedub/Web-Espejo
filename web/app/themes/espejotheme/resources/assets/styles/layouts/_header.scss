@@ -1,7 +1,66 @@
+header.banner {
+  box-sizing: border-box;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1.875em;
+  }
+
+  .container-fluid {
+    @extend .d-flex ;
+    @extend .justify-content-end ;
+
+    //position: fixed;
+    //width: 100%;
+    padding: 0;
+    text-transform: capitalize;
+    border-bottom: 2px solid;
+  }
+
+  .brand {
+    padding: 0.5rem 0;
+  }
+}
+
 .banner .nav li {
-  @extend .nav-item;
+  @extend .nav-item ;
 }
 
 .banner .nav a {
-  @extend .nav-link;
+  @extend .nav-link ;
+
+  float: right;
+}
+
+.nav {
+  transition: all 0.3s ease-in-out 0.3s;
+
+  .sub-menu {
+    list-style: none;
+    display: flex;
+    visibility: hidden;
+
+    &::after {
+      content: "\2190";
+      line-height: 2.25;
+    }
+  }
+}
+
+#menu-item-132 a {
+  cursor: pointer;
+}
+
+.show {
+  visibility: visible !important;
+  transition: all 0.3s ease-in-out 0.3s;
+}
+
+body.home {
+  .sticky-top {
+    background-color: #ffe6a3;
+  }
+
+  .sticky-top.changeColor {
+    background-color: #eaeaea;
+  }
 }
