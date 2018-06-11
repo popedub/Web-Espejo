@@ -1,67 +1,119 @@
-$h: 100vh;
-$header: 122px; //esto es el header + el margen superior + el margen inferior
-$h_single: 82px;
-$h_abajo: 42px;
-$mrb: 100px; //margin para re-utilizar
-
 //home page, división del post destacado
 article.full-page {
-  height: calc(#{$h} - #{$header});
-  // flex-direction: column;
-  // justify-content: center;
-
   @include make-row;
 
-  // @extend .d-flex ;
+  margin-left: 0;
+  margin-right: 0;
+  //display: block;
+  //height: calc(#{$h} - #{$h_abajo});
+  width: 100%;
+  //position: relative;
+
+  @extend .flex-column ;
+  @extend .justify-content-between ;
+  @extend .justify-content-sm-start ;
+  @extend .flex-sm-row ;
+
+  @include media-breakpoint-up (sm) {
+    margin-left: -15px;
+    margin-right: -15px;
+    //display: flex;
+    height: calc(#{$h} - #{$h_xl});
+  }
+
+  @include media-breakpoint-up (xxl) {
+    height: calc(#{$h} - #{$header});
+  }
 
   .izq {
-    @extend .col ;
+    @include make-col-ready ;
 
-    border-right: 2px solid;
+    @extend .d-sm-flex ;
+    @extend .flex-sm-column ;
+    @extend .justify-content-sm-center ;
 
-    @extend .d-flex ;
-    @extend .flex-column ;
-    @extend .justify-content-center ;
+    @include media-breakpoint-up (sm) {
+      @include make-col(6);
 
-    img {
-      @extend .img-fluid ;
-      @extend .mx-auto ;
-      @extend .text-center ;
-
-      max-width: 400px;
-      max-height: 300px;
-      margin-top: -40px;
-
-      @include media-breakpoint-up(xxl) {
-        max-width: 614px;
-        max-height: 380px;
-      }
+      border-right: 2px solid;
     }
 
     .entry-title {
-      position: absolute;
-      font-size: 2.75rem;
+      position: relative;
+      font-size: 3.3125em;
+      font-weight: 400;
       bottom: 0;
       // margen para alinear el texto con la barra de navegacion
-      margin-left: 25px;
       margin-bottom: 0;
+      text-align: center;
+      margin-top: 50px;
+      padding: 0 25px;
+
+      @include media-breakpoint-up (sm) {
+        margin-left: 25px;
+        margin-top: 0;
+        position: absolute;
+        bottom: -10px;
+        padding: 0 20px 0 0;
+        text-align: left;
+        font-size: 2rem;
+      }
+
+      // @include media-breakpoint-up (xl) {
+
+      // }
+
+      @include media-breakpoint-up (xxl) {
+        font-size: 2.75rem;
+      }
     }
   }
 
   .der {
-    @extend .col ;
-    @extend .d-flex ;
-    @extend .flex-column ;
-    @extend .justify-content-center ;
-    //@extend .align-items-end ;
+    @include make-col-ready ;
+
+    //@extend .clearfix ;
+    @extend .d-sm-flex ;
+    @extend .flex-sm-column ;
+    @extend .justify-content-sm-center ;
+    @extend .align-self-sm-center ;
+    @extend .align-self-end ;
+    //position: relative;
+
+    @include media-breakpoint-up (sm) {
+      @include make-col(6);
+
+      height: calc(#{$h} - #{$h_xl});
+      position: relative;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      height: calc(#{$h} - #{$header});
+    }
 
     .entry-summary {
-      position: absolute;
-      bottom: 0;
-      // margen para alinear el texto con la barra de navegacion
-      margin-left: 25px;
-      //padding: 0 25px 20px;
-      font-size: 1.25rem;
+      margin-top: 25px;
+
+      @include media-breakpoint-up (sm) {
+        position: absolute;
+        bottom: -5px;
+        padding: 0 42px 0 0;
+        // margen para alinear el texto con la barra de navegacion
+        margin-left: 25px;
+      }
+
+      @include media-breakpoint-up (xxl) {
+        bottom: -15px;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      @include media-breakpoint-up (xxl) {
+        font-size: 1.25rem;
+        bottom: -10px;
+      }
     }
 
     img {
@@ -69,13 +121,18 @@ article.full-page {
       @extend .mx-auto ;
       @extend .text-center ;
 
-      max-width: 400px;
-      max-height: 300px;
-      margin-top: -40px;
+      display: none;
+
+      @include media-breakpoint-up (sm) {
+        margin-top: -40px;
+        max-width: 300px;
+        max-height: 225px; //4:3 ratio
+        display: block;
+      }
 
       @include media-breakpoint-up(xxl) {
-        max-width: 614px;
-        max-height: 380px;
+        max-width: 620px; //4:3 ratio
+        max-height: 365px;
       }
     }
   }
@@ -84,14 +141,48 @@ article.full-page {
 .post_tags {
   @include make-col-ready();
 
-  font-size: 1.875rem;
-  font-weight: light;
+  margin-top: 50px;
+  padding-right: 0;
+  padding-left: 0;
+
+  @include media-breakpoint-up (sm) {
+    font-size: 1.3em;
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  @include media-breakpoint-up (xxl) {
+    font-size: 1.875em;
+  }
+}
+
+body.home {
+  .post_tags {
+    display: none;
+
+    @include media-breakpoint-up (sm) {
+      display: block;
+    }
+  }
 }
 
 .main-lista {
   @include make-col-ready();
 
-  margin-top: 100px;
+  margin-top: 50px;
+  padding-left: 0;
+  padding-right: 0;
+
+  @include media-breakpoint-up (sm) {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 100px;
+  }
+
+  @include media-breakpoint-up (lg) {
+    margin-top: 150px;
+  }
 }
 //para el Masonry
 .grid {
@@ -100,103 +191,279 @@ article.full-page {
     @include make-col-ready();
 
     min-height: 1px;
-    font-size: 3.125rem;
-
-    h2 {
-      font-size: 3.125rem;
-    }
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 25px;
 
     @include media-breakpoint-up(sm) {
       @include make-col(4);
 
-      margin-bottom: 100px;
+      //margin-bottom: 100px;
+      font-size: 1.75rem;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      h2 {
+        font-size: 2.25rem;
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+    }
+
+    @include media-breakpoint-up (xxl) {
+      font-size: 2.375em;
+      padding-right: 30px;
+      //margin-bottom: 85px;
+
+      h2 {
+        font-size: 2.375em;
+      }
     }
   }
 
   .grid-item {
+    h2 {
+      font-size: 1.625em;
+    }
+    .entry-summary {/* stylelint-disable-line */
+      font-size: 1.625em;
+      line-height: 1.2;
+    }
+
     @include media-breakpoint-up(sm) {
       @include make-col(4);
 
       margin-bottom: 100px;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      margin-bottom: 150px;
     }
   }
 }
 
 .contenedor {
   width: 100%;
+  font-weight: 400;
 }
 //SINGLE View
 article.single {
   @include make-row;
-  //height: calc(#{$h} - #{$header});
+
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: -5px;
+  display: block;
+
+  @include media-breakpoint-up (sm) {
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+  }
+}
+
+.col-izq,
+.col-der {
+  @include make-col-ready;
+
+  @include media-breakpoint-up (md) {
+    @include make-col(6);
+  }
+}
+
+.col-izq {
+  .row {
+    display: block;
+
+    @include media-breakpoint-up (sm) {
+      display: flex;
+    }
+  }
+}
+
+.col-der {
+  margin-bottom: 40px;
+
+  @include media-breakpoint-up (sm) {
+    border-left: 2px solid;
+  }
 }
 
 .izq-single-up {
   @extend .col-12 ;
-  @extend .d-flex ;
+  @extend .d-sm-flex ;
   //@extend .flex-column ;
-  @extend .justify-content-center ;
+  @extend .justify-content-sm-center ;
 
-  height: calc(#{$h} - #{$h_single});
+  padding-bottom: 50px;
+
+  @include media-breakpoint-up (sm) {
+    height: calc(#{$h} - #{$h_single_xl});
+    padding-bottom: 0;
+  }
+
+  @include media-breakpoint-up (xxl) {
+    height: calc(#{$h} - #{$h_single});
+  }
 
   .entry-title-single {
     @extend .text-center ;
     @extend .align-self-center ;
 
-    margin-top: -82px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    @include media-breakpoint-up (sm) {
+      margin-top: -82px;
+      padding: 0 40px;
+      font-weight: 400;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      font-size: 3.125em;
+    }
   }
 
   .nav-posts {
     display: inline;
     position: absolute;
-    right: 25px;
+    right: 15px;
+    top: 30px;
+
+    @include media-breakpoint-up (sm) {
+      right: 40px;
+      top: 0;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .nro-index {
+    position: absolute;
+    left: 15px;
+    top: 30px;
+
+    @include media-breakpoint-up (sm) {
+      left: 40px;
+      top: 0;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      font-size: 1.25rem;
+    }
   }
 
   .pie {
-    position: absolute;
-    font-size: 1.25rem;
-    bottom: 40px;
-    left: 40px;
+    position: relative;
     // margen para alinear el texto con la barra de navegacion
     //margin-left: 25px;
     margin-bottom: 0;
+
+    br {
+      display: none;
+
+      @include media-breakpoint-up (sm) {
+        display: inline;
+      }
+    }
+
+    @include media-breakpoint-up (sm) {
+      font-size: 1.25rem;
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+    }
   }
 
   .tags-single {
-    position: absolute;
-    bottom: 40px;
-    width: 50%;
-    right: 20px;
-    font-size: 1.25rem;
+    position: relative;
+    text-align: center;
+    padding-bottom: 15px;
+
+    @include media-breakpoint-up (sm) {
+      position: absolute;
+      width: 50%;
+      bottom: 40px;
+      right: $guter;
+      text-align: right;
+      padding-bottom: 0;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      font-size: 1.25rem;
+    }
   }
 }
 
 .izq-single-abajo {
   @extend .col-12 ;
-  @extend .d-flex ;
+  @extend .d-sm-flex ;
 
-  //padding-right: 40px;
-  padding-right: 0;
-  padding-left: 0;
-  //padding-top: 45px;
+  @include media-breakpoint-up (sm) {
+    padding-right: 0;
+    padding-left: 0;
+  }
 
   .galeria,
   .up-linea {
-    padding: 100px 15px;
     width: 100%;
     border-top: 2px solid;
-    margin-right: 35px;
-    margin-left: 40px;
-    height: 100vh;
+    padding-top: 30px;
 
-    // @extend .align-self-start ;
+    @include media-breakpoint-up (sm) {
+      height: 100vh;
+      padding: 30px 15px;
+      margin-right: 40px;
+      margin-left: 40px;
+      //border-top: none;
+    }
+
+    @include media-breakpoint-up (xxl) {
+      margin-right: 180px;
+      margin-left: 40px;
+    }
 
     .row {
-      margin-top: 100px;
+      margin-top: 30px;
+
+      @include media-breakpoint-up (sm) {
+        margin-top: 100px;
+      }
     }
 
     h3 {
-      margin-left: -15px;
+      font-size: 1.25em;
+      //margin-top: 30px;
+      margin-bottom: 50px;
+      font-weight: 400;
+
+      @include media-breakpoint-up (sm) {
+        margin-top: 0;
+        //margin-left: -15px;
+      }
+
+      @include media-breakpoint-up (xxl) {
+        font-size: 1.75em;
+      }
+    }
+  }
+
+  .galeria {
+    @include media-breakpoint-up (xxl) {
+      margin-right: 40px;
+      margin-left: 40px;
+    }
+  }
+
+  .info-player {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include media-breakpoint-up (sm) {
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
 }
@@ -205,16 +472,30 @@ article.single {
   @extend .col-12 ;
   @extend .d-flex ;
   @extend .flex-column ;
-  //@extend .justify-content-center ;
 
-  border-left: 2px solid;
-  //height: calc(#{$h} - #{$h_single});
+  margin-top: 50px;
+
+  @include media-breakpoint-up (sm) {
+    margin-top: 0;
+  }
+
+  @include media-breakpoint-up (xxl) {
+    font-size: 1.25rem;
+  }
 
   .info-player {
-    position: absolute;
-    bottom: 25px;
-    left: 40px;
-    right: 40px;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @include media-breakpoint-up (sm) {
+      position: absolute;
+      left: 45px;
+      right: 40px;
+      bottom: 25px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
   figure {
@@ -224,21 +505,44 @@ article.single {
 
 //texto largo y el player abajo a la izquierda
 .texto-largo {
-  min-height: calc(#{$h} - #{$h_single});
-  padding-top: 100px;
-  padding-left: 20px;
-  padding-right: 40px;
+  padding-top: 50px;
+  border-top: 2px solid;
+
+  @include media-breakpoint-up (sm) {
+    min-height: calc(#{$h} - #{$h_single});
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-top: 100px;
+    border-top: none;
+  }
+
+  @include media-breakpoint-up (xl) {
+    padding-bottom: 100px;
+
+    figure {
+      margin-top: 125px;
+      margin-bottom: 125px;
+      max-width: 60%;
+    }
+  }
 }
 //clase para cuando no tenemos un texto súper largo
 .curto {
-  height: calc(#{$h} - #{$h_single});
-  display: flex;
+  display: block;
+  border-top: 2px solid;
+  padding-top: 50px;
+  padding-bottom: 50px;
 
-  iframe {
-    @extend .mx-auto ;
-    @extend .align-self-center ;
+  @include media-breakpoint-up (sm) {
+    display: flex;
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: calc(#{$h} - #{$h_single_xl});
+  }
 
-    margin-top: -82px;
+  @include media-breakpoint-up (xxl) {
+    height: calc(#{$h} - #{$h_single});
   }
 }
 
@@ -246,28 +550,63 @@ article.single {
   @extend .col-12 ;
   @extend .d-flex ;
 
-  border-left: 2px solid;
-  padding-right: 0;
-  padding-left: 14px;
-  margin-bottom: 40px;
-  height: calc(#{$h} - #{$h_abajo});
+  //border-left: 2px solid;
+  min-height: calc(#{$h} - #{$h_abajo});
+
+  @include media-breakpoint-up (sm) {
+    padding-left: 14px;
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
 
   .post-relacionados {
-    font-size: 1.875em;
+    font-size: 1.25em;
     border-top: 2px solid;
     width: 100%;
-    padding-top: 100px;
+    padding-top: 30px;
     padding-right: 0;
-    margin-left: 20px;
-    margin-right: 40px;
+
+    @include media-breakpoint-up (sm) {
+      margin-left: 30px;
+      margin-right: 40px;
+      padding-top: 30px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 30px;
+
+        @include media-breakpoint-up (xxl) {
+          margin-bottom: 50px;
+        }
+      }
+    }
 
     h3,
     h4 {
       font-size: 1em;
+      font-weight: 400;
     }
 
     h3 {
-      margin-bottom: 100px;
+      margin-bottom: 50px;
+      font-weight: 400;
+
+      @include media-breakpoint-up (sm) {
+        margin-bottom: 100px;
+      }
+    }
+    //para la tipografía dentro del contenedor post-relacionados
+    @include media-breakpoint-up (xxl) {
+      font-size: 1.875em;
+
+      h3,
+      h4 {
+        font-size: 1em;
+      }
     }
   }
 }
@@ -275,24 +614,66 @@ article.single {
 .g-der {
   @extend .col-12 ;
 
-  padding-top: 100px;
-  margin-bottom: 100px;
-  width: 100%;
   border-top: 2px solid;
+  font-size: 1.25em;
+  padding: 0 15px 0 0;
+
+  @include media-breakpoint-up (sm) {
+    padding-top: 0;
+    margin-bottom: 100px;
+    width: 100%;
+  }
 
   .row {/* stylelint-disable-line */
-    margin-top: 100px;
+    margin-right: 0;
+    margin-left: 0;
+
+    @include media-breakpoint-up (sm) {
+      margin-top: 100px;
+    }
+  }
+  //extra extra extra :( tengo que revisar el código y optimizarlo, para dejarlo bien!
+
+  h3 {/* stylelint-disable-line */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  .img-featured {/* stylelint-disable-line */
+    margin-left: 0;
+    margin-right: -15px;
+
+    @include media-breakpoint-up (sm) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+
+  @include media-breakpoint-up (xxl) {
+    font-size: 1.85em;
   }
 }
 //margen para el row dentro de la galeria en la derecha abajo
 .mr {
-  margin-left: 20px;
-  margin-right: 40px;
+  margin-left: 0;
+  margin-right: 0;
+
+  @include media-breakpoint-up (sm) {
+    margin-left: 35px;
+    margin-right: 40px;
+  }
 }
 //margen para el row en el player a la izquierda abajo
 .mrr {
-  margin-left: 20px;
-  margin-right: 50px;
+  margin-left: 0;
+  margin-right: 0;
+
+  @include media-breakpoint-up (sm) {
+    margin-left: 36px;
+    margin-right: 60px;
+  }
 }
 
 //extra para los post relacionados con múliples contenido
@@ -302,16 +683,28 @@ article.single {
 }
 //extra para el player cuando hay múltiples contenidos
 .player-extra {
-  margin-left: 20px !important;
+  @include media-breakpoint-up (sm) {
+    margin-left: 5px !important;
+  }
 }
 
-.img-featured {
-  @extend .mx-auto ;
+.img-featured {/* stylelint-disable-line */
+  @extend .mx-sm-auto ;
   @extend .text-center ;
 
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-bottom: 50px;
+
+  @include media-breakpoint-up (sm) {
+    padding-bottom: 0;
+  }
+
   .cc {
-    max-width: 400px;
-    max-height: 300px;
+    @include media-breakpoint-up (sm) {
+      max-width: 400px;
+      max-height: 300px;
+    }
 
     @include media-breakpoint-up(xxl) {
       max-width: 614px;
@@ -322,16 +715,42 @@ article.single {
 
 .player {
   min-width: 300px;
-  max-width: 400px;
-}
+  max-width: 375px;
 
+  iframe {
+    @extend .mx-auto ;
+    @extend .align-self-center ;
+
+    margin-top: -82px;
+  }
+}
+//soundcloud
+.external-player {
+  //@extend .mx-auto;
+  @extend .align-self-start ;
+  @extend .embed-responsive ;
+  @extend .embed-responsive-16by9 ;
+
+  max-width: 100%;
+
+  @include media-breakpoint-up (sm) {
+    margin-left: 30px;
+    margin-right: 25px;
+  }
+}
 //LIGTHBOX
 #ligthbox {
   list-style: none;
   padding-left: 0;
+  display: none;
+
+  @include media-breakpoint-up (sm) {
+    display: block;
+  }
 
   li {
     cursor: pointer;
+    font-size: 1.25rem;
   }
 }
 
@@ -356,6 +775,49 @@ $lg-toolbar-bg: transparent;
   border: none;
 }
 
+.wp-playlist-light {
+  background: #eaeaea;
+}
+
+.mejs-controls {
+  //background: #eaeaea !important;
+  color: $black !important;
+}
+
+.mejs-button > button {
+  // background: none !important;
+  color: $black;
+  // &::after {/* stylelint-disable-line */
+  //   content: "&#9655;";
+  // }
+}
+
 .wp-playlist-tracks {
   margin-top: 100px;
+}
+
+.wp-playlist-item {
+  border-bottom: none !important;
+  margin-bottom: 10px;
+}
+
+.box-video {
+  @include make-row ;
+
+  width: 100%;
+  display: block;
+
+  @include media-breakpoint-up (sm) {
+    display: flex;
+  }
+}
+
+.box-video-mob {
+  margin-left: -15px;
+  margin-right: -15px;
+  // margin-top: 30px;
+}
+
+.nro-post {
+  font-size: 1.625em;
 }

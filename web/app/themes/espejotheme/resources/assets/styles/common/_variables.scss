@@ -15,3 +15,15 @@ $grid-breakpoints: (
 ) !default;
 
 $favorit-font-path: '../fonts' !default;
+
+$h: 100vh;
+$medio: 50vh;
+$header: 172px; //esto es el header + el margen superior + el margen inferior
+$h_xl: 142px; //pantallas xl
+$h_single: 112px;
+$h_single_xl: 92px;//pantallas xl
+$h_abajo: 52px;
+$mrb: 100px; //margin para re-utilizar
+
+//variable para el gutter en el single view
+$guter: 50px;

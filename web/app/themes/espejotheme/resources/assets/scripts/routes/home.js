@@ -50,20 +50,25 @@ export default {
 
     $(function () {
       var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      var h2 = (h/4)*3;
+      var h2 = (h + 40);
+
       $(window).scroll(function () {
         if ($(this).scrollTop() > h) {
           $('body').addClass('changeColor');
-          $('.sticky-top').addClass('changeColor');
+          //console.log(h);
+          // $('.sticky-top').addClass('changeColor');
 
         }
         if ($(this).scrollTop() < h) {
           $('body').removeClass('changeColor');
-          $('.sticky-top').removeClass('changeColor');
-          $('.titular-fijo').removeClass('visible');
+          //$('.sticky-top').removeClass('changeColor');
         }
         if ($(this).scrollTop() > h2) {
-          $('.titular-fijo').addClass('visible');
+          $('.sticky-top').addClass('changeColor');
+          //console.log (h2);
+        }
+        if ($(this).scrollTop() < h2) {
+          $('.sticky-top').removeClass('changeColor');
         }
       });
     });

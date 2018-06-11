@@ -1,10 +1,9 @@
-<article @php post_class('full-page') @endphp >
+<article @php (post_class('full-page')) @endphp >
   <div class="izq">
-    <h2 class="entry-title">
-      <a href="{{ get_permalink() }}">{{ get_the_title() }}</a></br>
-      &#8594;
-      @php echo nombres_cat() @endphp
-    </h2>
+    <a href="{{ get_permalink() }}"><h2 class="entry-title">{{ get_the_title() }}</br>
+      <span class="d-none d-sm-block">&#8594;
+      @php echo nombres_cat() @endphp </span></h2>
+    </a>
 
   </div>
   <div class="der">

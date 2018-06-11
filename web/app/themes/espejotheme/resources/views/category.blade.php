@@ -9,6 +9,16 @@
   @endif
 
   <div class="todo">
+    <div class="tags-mobl">
+      <div class="ti-post_tags">Tags</div>
+      <input type="checkbox" id="menu-tags" />
+      <label for="menu-tags" class="label-tags">
+            <span></span>
+            <span></span>
+
+      </label>
+      {!! $tags_mob !!}
+    </div>
     {!! $tags !!}
     <div class="main-lista">
       <div class="grid">

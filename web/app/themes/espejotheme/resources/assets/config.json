@@ -8,6 +8,9 @@
       "./scripts/customizer.js"
     ]
   },
+  "headers": {
+    "Access-Control-Allow-Origin": "*"
+  },
   "publicPath": "/app/themes/espejotheme",
   "devUrl": "http://joseluisespejo.com",
   "proxyUrl": "http://localhost:3000",

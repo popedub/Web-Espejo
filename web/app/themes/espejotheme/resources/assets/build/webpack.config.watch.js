@@ -14,6 +14,11 @@ if (url.parse(target).protocol === 'https:') {
 }
 
 module.exports = {
+  devServer: {
+    watchOptions: {
+      poll: true,
+    },
+  },
   output: {
     pathinfo: true,
     publicPath: config.proxyUrl + config.publicPath,
@@ -29,7 +34,7 @@ module.exports = {
       open: config.open,
       proxyUrl: config.proxyUrl,
       watch: config.watch,
-      delay: 500,
+      delay: 700,
     }),
   ],
 };
